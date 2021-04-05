@@ -1,0 +1,237 @@
+/****************** MEDIA QUERY MANAGER *****************/
+
+/*
+** Bootstrap 5 breakpoints
+**  xs: 0, // X-Small devices (portrait phones, less than 576px)
+**  sm: 576px, // Small devices (landscape phones, less than 768px)
+**  md: 768px,  // Medium devices (tablets, less than 992px)
+**  lg: 992px,// Large devices (desktops, less than 1200px)
+**  xl: 1200px,// X-Large devices (large desktops, less than **1400px)
+** xxl: 1400px  
+*/
+
+
+
+/*
+**  Desktop First MEDIA QUERY MANAGER Mixin.
+**  we used bootstrap5 Breakpoints in px.
+**  we use Max-width We occasionally use media queries that go the given screen size or smaller) --> max-width and down. 
+*/
+@mixin rwd-df-down($breakpoint){
+    @if $breakpoint == xs {
+        @media (max-width: 575.98px) { @content};    // X-Small devices (portrait phones, less than 576px)
+    }
+
+    @if $breakpoint == sm {
+        @media (max-width: 767.98px) { @content};   // Small devices (landscape phones, less than 768px)
+    }
+
+    @if $breakpoint == md {
+        @media (max-width: 991.98px) { @content};   // Medium devices (tablets, less than 992px)
+    }
+
+    @if $breakpoint == lg {
+        @media (max-width: 1199.98px) { @content};   // Large devices (desktops, less than 1200px)
+    }
+
+    @if $breakpoint == xl {
+        @media (max-width: 1399.98px) { @content};   // X-Large devices (large desktops, less than 1400px)
+    }
+
+    // XX-Large devices (larger desktops)
+    // No media query since the xxl breakpoint has no upper bound on its width
+}
+
+
+
+
+
+/*
+**  Mobile First MEDIA QUERY MANAGER Mixin.
+**  we used bootstrap5 Breakpoints in px.
+**  we use Min-width We occasionally use media queries that go the given screen size or larger) --> min-width and up. 
+*/
+@mixin rwd-mf-up($breakpoint){
+
+    // X-Small devices (portrait phones, less than 576px)
+    // No media query for `xs` since this is the default in Bootstrap
+
+    @if $breakpoint == sm {
+        @media (min-width: 576px) { @content};    // Small devices (landscape phones, 576px and up)
+
+    }
+
+    @if $breakpoint == md {
+        @media (min-width: 768px) { @content};   // Medium devices (tablets, 768px and up)
+    }
+
+    @if $breakpoint == lg {
+        @media (min-width: 992px) { @content};   // Large devices (desktops, 992px and up)
+    }
+
+    @if $breakpoint == xl {
+        @media (min-width: 1200px) { @content};   // X-Large devices (large desktops, 1200px and up)
+    }
+
+    @if $breakpoint == xxl {
+        @media (min-width: 1400px) { @content};  // XX-Large devices (larger desktops, 1400px and up)
+    }
+
+}
+
+
+
+/*
+**  Single Breakpoint MEDIA QUERY MANAGER Mixin.
+**  we used bootstrap5 Breakpoints in px.
+**  we use Min-width & max-width to specify the a single breakpoin 
+*/
+@mixin rwd-only($breakpoint){
+    // X-Small devices (portrait phones, less than 576px)
+    @if $breakpoint == xs {
+        @media (max-width: 575.98px) { @content};    
+    }
+
+    // Small devices (landscape phones, 576px and up768px)
+    @if $breakpoint == sm {
+        @media (min-width: 576px) and (max-width: 767.98px) { @content};    
+    }
+
+    //  Medium devices (tablets, 768px and upto 992px)
+    @if $breakpoint == md {
+        @media (min-width: 768px) and (max-width: 991.98px) { @content};    
+    }
+
+    // Large devices (desktops, 992px and upto 1200px)
+    @if $breakpoint == lg {
+        @media (min-width: 992px) and (max-width: 1199.98px) { @content};    
+    }
+
+    // X-Large devices (large desktops, 1200px and upto 1400px)
+    @if $breakpoint == xl {
+        @media (min-width: 1200px) and (max-width: 1399.98px) { @content};    
+    }
+
+    // XX-Large devices (larger desktops, 1400px and up)
+    @if $breakpoint == xxl {
+        @media (min-width: 1400px) { @content};   
+    }
+}
+
+
+
+/*
+**  Between Breakpoints MEDIA QUERY MANAGER Mixin.
+**  we used bootstrap5 Breakpoints in px.
+**  Similarly, media queries may span multiple breakpoints widths:
+**  we use Min-width & max-width to specify the a range breakpoint 
+*/
+@mixin rwd-between($bpmin, $bpmax){
+
+    @if $bpmin == null {
+        @if $bpmax == xxl { @media (min-width:0px) { @content; } } 
+        @else{
+            @include rwd-df-down($bpmax) { @content;}
+        }
+    }  
+
+    @else if $bpmax == null {
+        @if $bpmin == xs {  @include rwd-only(xs) { @content; } } 
+        @else{
+            @include rwd-mf-up($bpmin) { @content; }
+        }
+    } 
+     
+    @else if $bpmin != null and $bpmax != null {
+
+        @if $bpmin == xs {   $bpmin: 0     }
+        @if $bpmin == sm {   $bpmin: 576   }
+        @if $bpmin == md {   $bpmin: 768   }
+        @if $bpmin == lg {   $bpmin: 992   }
+        @if $bpmin == xl {   $bpmin: 1200  }
+        // @if $bpmin == xxl { $bpmin: 1400 }
+
+        @if $bpmax == xs {   $bpmax: 577.98   }
+        @if $bpmax == sm {   $bpmax: 767.98   }
+        @if $bpmax == md {   $bpmax: 991.98   }
+        @if $bpmax == lg {   $bpmax: 1199.98  }
+        @if $bpmax == xl {   $bpmax: 1399.98  }
+        // @if $bpmax == xxl { $bpmax = 1400 }
+
+
+        @if $bpmax == xxl { @media (min-width: #{$bpmin}px) { @content}; }
+        @else{ @media (min-width: #{$bpmin}px) and (max-width: #{$bpmax}px) { @content}; }
+
+    }
+
+}
+
+
+
+// h1{
+
+//     background-color: blue ;
+
+//     @include rwd-mf-up(sm){
+//         background-color: red ;
+//     }
+
+//     @include rwd-mf-up(md){
+//         background-color: green ;
+//     }
+
+//     @include rwd-mf-up(lg){
+//         background-color: yellow ;
+//     }
+
+//     @include rwd-mf-up(xl){
+//         background-color: cyan ;
+//     }
+
+//     @include rwd-mf-up(xxl){
+//         background-color: grey ;
+//     }
+// }
+
+
+
+// h1{
+
+//     background-color: grey ;
+
+//     @include rwd-df-down(xl){
+//         background-color: cyan ;
+//     }
+
+//     @include rwd-df-down(lg){
+//         background-color: yellow ;
+//     }
+
+//     @include rwd-df-down(md){
+//         background-color: green ;
+//     }
+
+//     @include rwd-df-down(sm){
+//         background-color: red ;
+//     }
+
+//     @include rwd-df-down(xs){
+//         background-color: blue ;
+//     }
+// }
+
+
+
+// h1{
+//     @include rwd-only(sm){
+//         background-color: blue ;
+//     }
+// }
+
+
+
+// h1{
+//     @include rwd-between(sm,xl){
+//         background-color: blue ;
+//     }
+// }

@@ -1,0 +1,42 @@
+.scroll-top-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 900;
+
+    color: white;
+    background-color: rgba($color-primary, 1);
+    opacity: 1;
+
+    position: fixed;
+    #{$start}: 30px;
+    bottom: 30px;
+
+    cursor: pointer;
+    display: none;
+
+    border: 3px solid $color-white;
+
+
+    transition: 0.3s all ease-in-out;
+
+    &:hover{
+        background-color: $color-primary ;
+        // border: 3px solid $color-black
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+        background-color: rgba($color-primary, .6);
+    }
+
+    &:focus{
+        outline: none;  /* to change default for button*/
+        transform: translateY(-0.1rem);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+
+}
+

@@ -1,0 +1,19 @@
+/********** defines main layout of main section of home page *****************/
+
+
+/*
+**  define styling for section with class section-about.
+*/
+.section-about{
+
+    padding: $section-padding-vertically-lg  0;
+    @include respond(lg){ padding: $section-padding-vertically-md  0; }
+    @include respond(sm){ padding: $section-padding-vertically-sm 0; }
+    @include respond(xs){ padding:$section-padding-vertically-xs 0; }
+
+
+    
+}
+
+
+

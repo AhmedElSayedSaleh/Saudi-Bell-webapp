@@ -1,0 +1,51 @@
+/*
+**  CSS Initializati Reset
+*/
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+/*
+**  Set root font => to set the default 1rem unit value
+*/
+html{
+    //this defines what 1rem is 10px in xl & xxl media
+    font-size: 62.5%;  /* 1rem = 10px -->  10/16 *100% = 62.5% */
+
+
+    @include respond(lg){
+        font-size: 56.25%;  /*1rem = 9px -->  9/16 *100%  =  56.25%*/ 
+    }
+
+    @include respond(sm){
+        font-size: 50%;  /* 1rem = 8px -->  8/16 *100%  =  50% */
+    }
+
+}
+
+
+
+
+/*
+**  Set default inherited properties in body element 
+*/
+body{    
+        background-color: $color-white;
+        box-sizing: border-box;
+        font-family: $main-font ;
+        font-size: $default-font-size;
+        font-weight: normal;
+        line-height: 1.83;
+        color: $color-black;
+}
+
+
+/*
+**  Reset builts of ul and ol  Lists.
+*/
+ul, ol{  list-style-type: none;  }

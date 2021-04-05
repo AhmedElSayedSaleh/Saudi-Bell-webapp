@@ -1,0 +1,52 @@
+/*
+**  direction setting variables 
+*/
+$start: right ;
+$end: left ;
+
+
+
+/*
+**  font family setting variables 
+*/
+$main-font: cairo , sans-serif ; 
+$secondary-font: muli , sans-serif ; 
+
+
+
+
+/*******************************  import All used scss files   ******************************/
+
+@import "abstracts/variables" ;
+@import "abstracts/functions" ;
+@import "abstracts/mixins" ;
+// @import "abstracts/rwd" ;
+@import "abstracts/fonts" ;
+
+
+@import "base/base" ;
+@import "base/animation" ;
+@import "base/typography" ;
+@import "base/utilities" ;
+ 
+
+@import "components/button" ;
+@import "components/scroll-top-btn" ;
+@import "components/social-list" ;
+@import "components/slider" ;
+@import "components/card" ;
+@import "components/form" ;
+
+
+@import "layout/header" ;
+@import "layout/nav" ;
+@import "layout/footer" ;
+
+
+@import "pages/home" ;
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+/*
+**  define styling for button or link elements components with specified with classe btn.
+*/
+.btn{
+
+    &,
+    &:link,
+    &:visited{
+        display: inline-block;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 1.5rem 4rem ;
+        font-size: 1.8rem;
+
+        /* change default of button element*/
+        border: none ;
+        cursor: pointer;
+    }
+
+    &:hover{
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+    }
+
+    &:active,
+    &:focus  /* to change default for button*/
+    {
+        outline: none;  /* to change default for button*/
+    }
+
+    
+    &--primary{
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::before{
+            background-color: $color-primary;
+        }
+    }
+
+}
